@@ -5,8 +5,8 @@
  */
 package br.edu.ifsul.servlets;
 
-import br.edu.ifsul.dao.DaoPaciente;
-import br.edu.ifsul.modelo.Paciente;
+import br.edu.ifsul.dao.DaoEspecialidade;
+import br.edu.ifsul.modelo.Especialidade;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Luis
  */
-@WebServlet(name = "ServletPaciente", urlPatterns = {"./paciente/ServletPaciente"})
-public class ServletPaciente extends HttpServlet {
+@WebServlet(name = "ServletEspecialidade", urlPatterns = {"/especialidade/ServletEspecialidade"})
+public class ServletEspecialidade extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,10 +35,10 @@ public class ServletPaciente extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // capturando o DAO da sessão
-        DaoPaciente dao = (DaoPaciente) request.getSession().getAttribute("DaoPaciente");
+        DaoEspecialidade dao = (DaoEspecialidade) request.getSession().getAttribute("DaoEspecialidade");
         // caso o DAO seja nulo (não existe na sessão) ele deve ser criado
         if (dao == null){
-            dao = new DaoPaciente();
+            dao = new DaoEspecialidade();
         }
         
         String tela = ""; // armazena a tela que o servlet irá redirecionar após o processamento
@@ -48,7 +48,7 @@ public class ServletPaciente extends HttpServlet {
         if (acao == null){
             tela = "listar.jsp";
         } else if (acao.equals("incluir")){
-            dao.setObjetoSelecionado(new Paciente());
+            dao.setObjetoSelecionado(new Especialidade());
             dao.setMensagem("");
             tela = "formulario.jsp";
         } else if(acao.equals("alterar")){
@@ -59,7 +59,7 @@ public class ServletPaciente extends HttpServlet {
             tela = "formulario.jsp";                    
         } else if (acao.equals("excluir")){
             Integer id = Integer.parseInt(request.getParameter("id"));
-            Paciente objeto = dao.localizar(id);
+            Especialidade objeto = dao.localizar(id);
             if (objeto != null){
                 dao.remover(objeto);
                 tela = "listar.jsp";
@@ -74,13 +74,8 @@ public class ServletPaciente extends HttpServlet {
             }
             // atribuindo os dados que vieram na requisição ao objeto selecionado do DAO
             dao.getObjetoSelecionado().setId(id);
-            dao.getObjetoSelecionado().setNome(request.getParameter("nome"));
-            dao.getObjetoSelecionado().setNascimento(Calendar.getInstance());
-            dao.getObjetoSelecionado().setTelefone(request.getParameter("telefone"));
-            dao.getObjetoSelecionado().setSexo(request.getParameter("sexo"));
-            dao.getObjetoSelecionado().setHistorico(request.getParameter("historico"));
-            dao.getObjetoSelecionado().setPeso(Double.parseDouble(request.getParameter("peso")));
-            dao.getObjetoSelecionado().setAltura(Double.parseDouble(request.getParameter("altura")));
+            dao.getObjetoSelecionado().setDescricao(request.getParameter("descricao"));
+            
             // capturando o id do estado 
             
              
@@ -97,7 +92,7 @@ public class ServletPaciente extends HttpServlet {
             tela = "listar.jsp";
         }
         // atualizar o dao na sessão
-        request.getSession().setAttribute("pacienteDao", dao);
+        request.getSession().setAttribute("especialidadeDao", dao);
          
         // redireciona para a tela
         response.sendRedirect(tela);

@@ -21,7 +21,11 @@
                 <tr>
                     <th>ID</th>
                     <th>Nome</th>
-                    <th>Estado</th>
+                    <th>Nascimento</th>
+                    <th>Sexo</th>
+                    <th>Histórico</th>
+                    <th>Peso</th>
+                    <th>Altura</th>
                     <th>Alterar</th>
                     <th>Excluir</th>
                 </tr>
