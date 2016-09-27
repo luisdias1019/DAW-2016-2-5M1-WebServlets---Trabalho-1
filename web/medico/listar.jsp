@@ -3,18 +3,18 @@
 <%@page import="br.edu.ifsul.modelo.Medico"%>
 <%@page import="br.edu.ifsul.dao.DaoMedico"%>
 <%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
-<jsp:useBean id="daoMedico" scope="session"
+<jsp:useBean id="medicoDao" scope="session"
              type="DaoMedico"/>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <title>Listagem de pacientes</title>
+        <title>Listagem de médicos</title>
     </head>
     <body>
         <a href="../index.html">Início</a>
         <h2>Medicos</h2>
-        <h2><%=daoMedico.getMensagem()%></h2>
+        <h2><%=medicoDao.getMensagem()%></h2>
         <a href="ServletMedico?acao=incluir">Incluir</a>
         <table border="1">
             <thead>
@@ -25,7 +25,7 @@
             </thead>
             <tbody>
                 <% 
-                    for(Medico c : daoMedico.getLista()){  // inicio do laço de repetição                  
+                    for(Medico c : medicoDao.getLista()){  // inicio do laço de repetição                  
                 %>
                 <tr>
                     <td><%=c.getId()%></td>

@@ -60,7 +60,7 @@ public class DaoMedico {
      * @return Lista de estados
      */
     public List<Medico> getLista() {
-        return em.createQuery("from Medico order by nome").getResultList();
+        return em.createQuery("from Medico order by crm").getResultList();
     }
 
     public boolean salvar(Medico obj) {

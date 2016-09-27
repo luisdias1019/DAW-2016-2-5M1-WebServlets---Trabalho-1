@@ -32,7 +32,7 @@
             Código: <input type="text" name="id"
                            value="<%= pacienteDao.getObjetoSelecionado().getId() == null
                                    ? "" : pacienteDao.getObjetoSelecionado().getId() %>" size="6"
-                                   readonly />
+                                   readonly="true" />
             <br/>Nome: <input type="text" name="nome"
                            value="<%= pacienteDao.getObjetoSelecionado().getNome() == null
                                    ? "" : pacienteDao.getObjetoSelecionado().getNome() %>" size="40"/> 

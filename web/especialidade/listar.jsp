@@ -3,7 +3,7 @@
 <%@page import="br.edu.ifsul.modelo.Especialidade"%>
 <%@page import="br.edu.ifsul.dao.DaoEspecialidade"%>
 <%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
-<jsp:useBean id="daoEspecialidade" scope="session"
+<jsp:useBean id="especialidadeDao" scope="session"
              type="DaoEspecialidade"/>
 <!DOCTYPE html>
 <html>
@@ -14,7 +14,7 @@
     <body>
         <a href="../index.html">Início</a>
         <h2>Especialidades</h2>
-        <h2><%=daoEspecialidade.getMensagem()%></h2>
+        <h2><%=especialidadeDao.getMensagem()%></h2>
         <a href="ServletEspecialidade?acao=incluir">Incluir</a>
         <table border="1">
             <thead>
@@ -25,7 +25,7 @@
             </thead>
             <tbody>
                 <% 
-                    for(Especialidade c : daoEspecialidade.getLista()){  // inicio do laço de repetição                  
+                    for(Especialidade c : especialidadeDao.getLista()){  // inicio do laço de repetição                  
                 %>
                 <tr>
                     <td><%=c.getId()%></td>
